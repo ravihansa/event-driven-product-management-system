@@ -1,0 +1,16 @@
+model Product {
+  id          String  @id @default(cuid())
+  name        String @unique
+  description String?
+  price       Float
+  quantity    Int
+  category    Category @relation(fields: [categoryId], references: [id])
+  categoryId  Int // Foreign key
+  seller      Seller @relation(fields: [sellerId], references: [id])
+  sellerId    Int // Foreign key  
+  isActive    Boolean @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([sellerId])
+}
