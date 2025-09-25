@@ -1,6 +1,10 @@
 import prisma from '../../configs/database.js';
 import AppError from '../../utils/appError.js';
-
+import {
+    publishProductCreated,
+    publishProductUpdated,
+    publishProductDeleted
+} from '../../events/publishers/productEventPublisher.js';
 
 export async function listProdBySeller(sellerId) {
     return prisma.product.findMany({
@@ -27,6 +31,8 @@ export async function createProd(payload) {
     const product = await prisma.product.create({
         data: newProductData
     });
+
+    await publishProductCreated(product);
     return product;
 }
 
@@ -58,6 +64,8 @@ export async function updateProd(id, payload) {
         where: { id },
         data: newProductData
     });
+
+    await publishProductUpdated(updated);
     return updated;
 }
 
@@ -71,5 +79,7 @@ export async function deleteProd(id) {
         where: { id },
         data: { isActive: false }
     });
+
+    await publishProductDeleted(deactivated);
     return deactivated;
 }
