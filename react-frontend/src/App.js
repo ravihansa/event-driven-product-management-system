@@ -1,8 +1,11 @@
 import ProductPage from './pages/ProductPage';
+import Layout from './components/layout/Layout';
 
 function App() {
   return (
-    <ProductPage />
+    <Layout>
+      <ProductPage />
+    </Layout>
   );
 }
 
