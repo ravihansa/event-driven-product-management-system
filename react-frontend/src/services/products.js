@@ -1,9 +1,22 @@
-import axios from 'axios';
-const apiBaseUrl = process.env.REACT_APP_API_URL;
+import apiClient from './apiClient';
 const sellerId = process.env.REACT_APP_SELLER_ID; // Temporary id for testing purpose
 
 
 export const getProducts = async () => {
-    const res = await axios.get(`${apiBaseUrl}/product/${sellerId}`);
+    const res = await apiClient.get(`/product/${sellerId}`);
     return res.data;
+};
+
+export const createProduct = async (product) => {
+    const res = await apiClient.post(`/product`, product);
+    return res.data;
+};
+
+export const updateProduct = async (id, product) => {
+    const res = await apiClient.put(`/product/${id}`, product);
+    return res.data;
+};
+
+export const deleteProduct = async (id) => {
+    await apiClient.delete(`/product/${id}`);
 };

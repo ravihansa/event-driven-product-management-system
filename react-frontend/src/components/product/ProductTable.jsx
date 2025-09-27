@@ -1,6 +1,6 @@
 import styles from './ProductTable.module.css';
 
-export default function ProductTable({ products }) {
+export default function ProductTable({ products, onEdit, onDelete }) {
     return (
         <div className={styles.tableContainer}>
             <h2>Products List</h2>
@@ -18,8 +18,8 @@ export default function ProductTable({ products }) {
                             <td>{p.quantity}</td>
                             <td>{p.category.name}</td>
                             <td>
-                                <button className={styles.editBtn} >Edit</button>
-                                <button className={styles.deleteBtn} >Delete</button>
+                                <button className={styles.editBtn} onClick={() => onEdit(p)}>Edit</button>
+                                <button className={styles.deleteBtn} onClick={() => onDelete(p.id)}>Delete</button>
                             </td>
                         </tr>
                     ))}
