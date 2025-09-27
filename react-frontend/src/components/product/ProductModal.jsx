@@ -52,7 +52,9 @@ export default function ProductModal({ onClose, onSave, prodData, catList }) {
                         name="categoryId"
                         value={form.categoryId}
                         onChange={handleChange}
+                        required
                     >
+                        {!prodData ? <option value="">Select Category</option> : null}
                         {catList.map((option) => (
                             <option key={option.id} value={option.id}>
                                 {option.name}

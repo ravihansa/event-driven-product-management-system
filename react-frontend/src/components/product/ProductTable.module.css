@@ -37,8 +37,17 @@ button {
     border-radius: 4px;
 }
 
+.addBtn {
+    background: #5b5b72;
+    color: white;
+    font-size: 14px;
+    float: right;
+    padding: 8px 10px;
+    margin-bottom: 10px;
+}
+
 .editBtn {
-    background: #2E2EFF;
+    background: #4747e9;
     color: white;
     font-size: 14px;
     margin-left: 25px;

@@ -70,12 +70,13 @@ export default function ProductPage() {
             {loading && <Loader size="medium" color="#2c3e50" />}
             <ProductTable
                 products={productList}
-                onEdit={(p) => { setModalOpen(true); setEditProduct(p); }}
+                openModalSave={() => { setModalOpen(true) }}
+                openModalEdit={(p) => { setModalOpen(true); setEditProduct(p); }}
                 onDelete={handleDelete}
             />
             {modalOpen && (
                 <ProductModal
-                    onClose={() => setModalOpen(false)}
+                    onClose={() => { setModalOpen(false); setEditProduct(null); }}
                     onSave={handleSave}
                     prodData={editProduct}
                     catList={allCategoryList}

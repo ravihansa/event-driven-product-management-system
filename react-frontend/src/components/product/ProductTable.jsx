@@ -1,9 +1,10 @@
 import styles from './ProductTable.module.css';
 
-export default function ProductTable({ products, onEdit, onDelete }) {
+export default function ProductTable({ products, openModalSave, openModalEdit, onDelete }) {
     return (
         <div className={styles.tableContainer}>
             <h2>Products List</h2>
+            <button className={styles.addBtn} onClick={() => openModalSave()} >Add New Product ✚</button>
             <table className={styles.table}>
                 <thead>
                     <tr>
@@ -18,7 +19,7 @@ export default function ProductTable({ products, onEdit, onDelete }) {
                             <td>{p.quantity}</td>
                             <td>{p.category.name}</td>
                             <td>
-                                <button className={styles.editBtn} onClick={() => onEdit(p)}>Edit</button>
+                                <button className={styles.editBtn} onClick={() => openModalEdit(p)}>Edit</button>
                                 <button className={styles.deleteBtn} onClick={() => onDelete(p.id)}>Delete</button>
                             </td>
                         </tr>

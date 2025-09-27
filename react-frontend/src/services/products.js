@@ -8,7 +8,8 @@ export const getProducts = async () => {
 };
 
 export const createProduct = async (product) => {
-    const res = await apiClient.post(`/product`, product);
+    const payload = { ...product, sellerId: Number(sellerId) };
+    const res = await apiClient.post(`/product`, payload);
     return res.data;
 };
 
