@@ -1,4 +1,5 @@
 import React, { useEffect, useState, } from 'react';
+import { useAlerts } from '../providers/AlertProvider';
 import Loader from '../components/common/loader/Loader';
 import ProductTable from '../components/product/ProductTable';
 import ProductModal from '../components/product/ProductModal';
@@ -13,6 +14,7 @@ export default function ProductPage() {
     const [allCategoryList, setAllCategoryList] = useState([]);
     const [modalOpen, setModalOpen] = useState(false);
     const [editProduct, setEditProduct] = useState(null);
+    const { successAlert, errorAlert } = useAlerts();
 
     const loadProductList = async () => {
         try {
@@ -26,6 +28,7 @@ export default function ProductPage() {
                 setAllCategoryList(catList);
             }
         } catch (error) {
+            errorAlert(error.message);
             console.error('Failed to load product or category data:', error);
         } finally {
             setLoading(false);
@@ -45,7 +48,9 @@ export default function ProductPage() {
                 await createProduct(data);
             }
             loadProductList();
+            successAlert(editProduct ? 'Product updated successfully' : 'Product saved successfully');
         } catch (error) {
+            errorAlert(error.message);
             console.error('Failed to save product:', error);
         } finally {
             setLoading(false);
@@ -58,7 +63,9 @@ export default function ProductPage() {
             setLoading(true);
             await deleteProduct(id);
             loadProductList();
+            successAlert('Product deleted successfully');
         } catch (error) {
+            errorAlert(error.message);
             console.error('Failed to delete product:', error);
         } finally {
             setLoading(false);

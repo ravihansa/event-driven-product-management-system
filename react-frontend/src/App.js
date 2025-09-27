@@ -1,11 +1,14 @@
 import ProductPage from './pages/ProductPage';
 import Layout from './components/layout/Layout';
+import AlertProvider from './providers/AlertProvider';
 
 function App() {
   return (
-    <Layout>
-      <ProductPage />
-    </Layout>
+    <AlertProvider>
+      <Layout>
+        <ProductPage />
+      </Layout>
+    </AlertProvider>
   );
 }
 
