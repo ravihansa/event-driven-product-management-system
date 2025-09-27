@@ -11,7 +11,7 @@ export async function listProdBySeller(sellerId) {
         where: { sellerId, isActive: true },
         include: {
             category: {
-                select: { name: true }
+                select: { name: true, id: true }
             },
         },
         orderBy: { updatedAt: 'desc' },
