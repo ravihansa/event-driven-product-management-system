@@ -1,0 +1,53 @@
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    width: 300px;
+}
+
+.modal input,
+.modal select {
+    display: block;
+    margin-bottom: 10px;
+    width: 100%;
+    padding: 6px;
+    box-sizing: border-box;
+}
+
+.actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.saveBtn {
+    background: #2E2EFF;
+    color: white;
+    font-size: 14px;
+}
+
+.cancelBtn {
+    background: #FF2E2E;
+    color: white;
+    font-size: 14px;
+}
+
+.saveBtn:hover {
+    text-decoration: underline;
+}
+
+.cancelBtn:hover {
+    text-decoration: underline;
+}
