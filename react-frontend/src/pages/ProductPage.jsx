@@ -48,7 +48,7 @@ export default function ProductPage() {
                 await createProduct(data);
             }
             loadProductList();
-            successAlert(editProduct ? 'Product updated successfully' : 'Product saved successfully');
+            // successAlert(editProduct ? 'Product updated successfully' : 'Product saved successfully');
         } catch (error) {
             errorAlert(error.message);
             console.error('Failed to save product:', error);
@@ -63,7 +63,7 @@ export default function ProductPage() {
             setLoading(true);
             await deleteProduct(id);
             loadProductList();
-            successAlert('Product deleted successfully');
+            // successAlert('Product deleted successfully');
         } catch (error) {
             errorAlert(error.message);
             console.error('Failed to delete product:', error);

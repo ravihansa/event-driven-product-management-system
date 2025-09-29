@@ -10,9 +10,55 @@ export const useAlerts = () => {
         toast.error(message, options);
     };
 
+    const customNotification = ({ type = "info", title, details }) => {
+        toast.custom((t) => (
+            <div
+                style={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    justifyContent: "space-between",
+                    background:
+                        type === "success" ? "#079D68"
+                            : type === "error" ? "#C90808"
+                                : type === "warning" ? "#A3A300"
+                                    : "#696969",
+                    color: "#fff",
+                    padding: "12px 16px",
+                    borderRadius: "8px",
+                    width: "350px",
+                    height: "75px",
+                    boxShadow: "0 4px 10px rgba(0,0,0,0.15)",
+                }}
+            >
+                <div>
+                    <strong style={{ display: "block", marginBottom: "4px" }}>
+                        {title}
+                    </strong>
+                    <span style={{ fontSize: "13px" }}>{details}</span>
+                </div>
+                <button
+                    onClick={() => toast.dismiss(t.id)}
+                    style={{
+                        marginLeft: "12px",
+                        background: type === "info" ? "#3B3B3B"
+                            : type === "warning" ? "#757500"
+                                : "transparent",
+                        border: "none",
+                        color: "#fff",
+                        fontSize: "16px",
+                        cursor: "pointer",
+                    }}
+                >
+                    Dismiss
+                </button>
+            </div>
+        ));
+    };
+
     return {
         successAlert: showSuccess,
-        errorAlert: showError
+        errorAlert: showError,
+        customNotification,
     };
 };
 
