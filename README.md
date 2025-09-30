@@ -7,6 +7,8 @@ A **full-stack event-driven product management application** built with:
 - **Real-time:** Server-Sent Events (SSE) for notifications  
 
 ---
+![](./react-frontend/public/sample-ui.png)
+---
 
 ## Features
 
@@ -81,4 +83,15 @@ npm run dev
 
 > This uses [concurrently](https://www.npmjs.com/package/concurrently) to launch both servers.
 
+---
+
+### 5. Run unit tests (backend)
+
+From the nodejs-backend, run both unit test & test coverage:
+
+```bash
+cd nodejs-backend
+npm run test
+npm run test:coverage
+```
 ---
