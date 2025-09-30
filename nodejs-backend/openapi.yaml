@@ -1,0 +1,150 @@
+openapi: 3.0.3
+info:
+  title: Event-Driven Product Management API
+  version: 1.0.0
+servers:
+  - url: http://localhost:3001/api/v1
+paths:
+  /product:
+    get:
+      summary: List all products
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+    post:
+      summary: Create a new product
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductInput'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+  /product/{id}:
+    put:
+      summary: Update a product by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductInput'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        '404':
+          description: Product not found
+    delete:
+      summary: Delete a product by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ''
+        '404':
+          description: Product not found
+  /category:
+    get:
+      summary: List all product categories
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Category'
+  /events/stream:
+    get:
+      summary: Subscribe to events (SSE)
+      responses:
+        '200':
+          description: Stream of events
+          content:
+            text/event-stream:
+              schema:
+                type: string
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+          format: float
+        quantity:
+          type: integer
+        category:
+          type: string    
+        seller:
+          type: string        
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        isActive:
+          type: boolean
+    ProductInput:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+          format: float
+        quantity:
+          type: integer
+        categoryId:
+          type: integer
+        sellerId:
+          type: integer 
+      required:
+        - name
+        - price
+        - quantity
+        - categoryId
+        - sellerId
+    Category:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string

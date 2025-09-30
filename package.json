@@ -1,0 +1,15 @@
+{
+    "name": "event-driven-product-management-system",
+    "version": "1.0.0",
+    "description": "Event-Driven Product Management System",
+    "license": "ISC",
+    "author": "ravihansa",
+    "scripts": {
+        "start:backend": "cd nodejs-backend && npm run start",
+        "start:frontend": "cd react-frontend && npm run start",
+        "dev": "concurrently --kill-others-on-fail \"npm run start:backend\" \"npm run start:frontend\""
+    },
+    "dependencies": {
+        "concurrently": "^9.2.1"
+    }
+}
